@@ -1,7 +1,8 @@
 ### Задание 1. Фонарь
 
-[lantern.py](Lantern/lantern.py) 
-[test.py](Lantern/test.py)
+[lantern.py](./lantern.py) 
+
+[test.py](./test.py)
 
 
 ### Запуск программы:
@@ -14,7 +15,7 @@ asyncio.run(main())
 ### Задание 2. Проектирование БД.
 Схема БД:
 
-<img src=./"TZ_DB.png"></details>
+<img src="TZ_DB.png"></details>
 
 ### SQL запросы:
 1) Получение информации о сумме товаров заказанных под каждого клиента (Наименование клиента, сумма)
