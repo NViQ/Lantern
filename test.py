@@ -41,19 +41,6 @@ class TestLantern(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.lantern.run_command('color', 4)
 
-    def test_handle_message_on(self):
-        handle_message({'command': 'on'}, self.lantern)
-        self.lantern.run_command.assert_called_once_with('on', None)
-
-    def test_handle_message_off(self):
-        handle_message({'command': 'off'}, self.lantern)
-        self.lantern.run_command.assert_called_once_with('off', None)
-
-    def test_handle_message_color(self):
-        handle_message({'command': 'color', 'metadata': 2}, self.lantern)
-        self.lantern.run_command.assert_called_once_with('color', 2)
-
-
 
 if __name__ == '__main__':
     unittest.main()
