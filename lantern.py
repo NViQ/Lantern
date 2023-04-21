@@ -69,7 +69,7 @@ async def main():
         # Создаем объект для работы с сокетом
         async with aiohttp.ClientSession() as session:
             socket = session.ws_connect(f'http://{SERVER_ADDRESS}:{SERVER_PORT}')
-            # Цикл для чтения сообщений от веб-сокета.
+            # Цикл для чтения сообщений от сокета.
             async for mssg in socket:
                 if mssg.type == aiohttp.WSMsgType.TEXT:
                     message = mssg.json()
