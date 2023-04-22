@@ -11,7 +11,7 @@ class TestLantern(unittest.TestCase):
     def setUp(self):
         self.lantern = Lantern()
 
-
+    # тесты конструктора класса Lantern
     def test_init_with_defaults(self):
         self.assertEqual(self.lantern.status, 0)
         self.assertEqual(self.lantern.color, 'белый')
@@ -28,13 +28,13 @@ class TestLantern(unittest.TestCase):
 
 
     async def test_run_command(self):
-
+        # тесты включения
         await self.lantern.run_command('on')
         self.assertEqual(self.lantern.status, 1)
         self.assertEqual(self.lantern.color, 'белый')
         await self.assertRaises(ValueError, self.lantern.run_command, 'on')
 
-
+        # тесты выключения
         await self.lantern.run_command('off')
         self.assertEqual(self.lantern.status, 0)
         self.assertEqual(self.lantern.color, 'белый')
@@ -54,6 +54,7 @@ class TestHandleMessage(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.lantern = AsyncMock()
 
+    # тесты обработки полученных сообщений
     async def test_handle_message_on(self):
         await handle_message({'command': 'on'}, self.lantern)
         self.lantern.run_command.assert_called_once_with('on', None)
