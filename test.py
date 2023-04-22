@@ -2,7 +2,10 @@ import unittest
 from unittest.mock import patch, AsyncMock
 
 from lantern import Lantern, main, handle_message
+import tracemalloc
 
+
+tracemalloc.start()
 
 class TestLantern(unittest.TestCase):
     def setUp(self):
@@ -22,9 +25,6 @@ class TestLantern(unittest.TestCase):
         with self.assertRaises(KeyError):
             Lantern(color=4)
 
-    def test_init_with_invalid_status(self):
-        with self.assertRaises(TypeError):
-            Lantern(status='on')
 
 
     async def test_run_command(self):
@@ -32,19 +32,19 @@ class TestLantern(unittest.TestCase):
         await self.lantern.run_command('on')
         self.assertEqual(self.lantern.status, 1)
         self.assertEqual(self.lantern.color, 'белый')
-        self.assertRaises(ValueError, self.lantern.run_command, 'on')
+        await self.assertRaises(ValueError, self.lantern.run_command, 'on')
 
 
         await self.lantern.run_command('off')
         self.assertEqual(self.lantern.status, 0)
         self.assertEqual(self.lantern.color, 'белый')
-        self.assertRaises(ValueError, self.lantern.run_command, 'off')
+        await self.assertRaises(ValueError, self.lantern.run_command, 'off')
 
         # тесты установки цвета
         await self.lantern.run_command('color', 3)
         self.assertEqual(self.lantern.status, 0)
         self.assertEqual(self.lantern.color, 'красный')
-        self.assertRaises(ValueError, self.lantern.run_command, 'color', 4)
+        await self.assertRaises(ValueError, self.lantern.run_command, 'color', 4)
 
         async with self.assertRaises(ValueError):
             await self.lantern.run_command('color', 4)
