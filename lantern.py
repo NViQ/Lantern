@@ -68,8 +68,8 @@ async def main():
         lantern = Lantern()
         # Создаем объект для работы с сокетом
         async with aiohttp.ClientSession() as session:
-            async with session.ws_connect(f'http://{SERVER_ADDRESS}:{SERVER_PORT}') as socket:
-                async for mssg in socket:
+            async with session.ws_connect(f'http://{SERVER_ADDRESS}:{SERVER_PORT}') as ws:
+                async for mssg in ws:
                     if mssg.type == aiohttp.WSMsgType.TEXT:
                         message = mssg.json()
                         await handle_message(message, lantern)
