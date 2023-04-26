@@ -69,9 +69,9 @@ async def main():
         # Создаем объект для работы с сокетом
         async with aiohttp.ClientSession() as session:
             async with session.ws_connect(f'http://{SERVER_ADDRESS}:{SERVER_PORT}') as ws:
-                async for mssg in ws:
-                    if mssg.type == aiohttp.WSMsgType.TEXT:
-                        message = mssg.json()
+                async for msg in ws:
+                    if msg.type == aiohttp.WSMsgType.TEXT:
+                        message = msg.json()
                         await handle_message(message, lantern)
     except Exception as err:
         print(f'Ошибка при подключении: {err}')

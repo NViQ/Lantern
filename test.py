@@ -75,13 +75,13 @@ class TestMain(unittest.IsolatedAsyncioTestCase):
     async def test_main(self, handle_mock, ws_connect_mock):
 
         ws_mock = AsyncMock()
-        mssg_mock = AsyncMock()
-        ws_mock.__aiter__.return_value = [mssg_mock]
+        msg_mock = AsyncMock()
+        ws_mock.__aiter__.return_value = [msg_mock]
 
 
         ws_connect_mock.return_value.__aenter__.return_value = ws_mock
-        mssg_mock.type = 'text'
-        mssg_mock.json.return_value = {'message': 'test'}
+        msg_mock.type = 'text'
+        msg_mock.json.return_value = {'message': 'test'}
 
         await main()
 
