@@ -49,6 +49,7 @@ class Lantern:
             self.color = self.COLORS[metadata]
             print(f'Установлен {self.color} цвет фонаря.')
 
+
 # Обрабатываем сообщения от сервера асинхронным методом
 async def handle_message(message: dict, lantern: Lantern) -> None:
     try:
